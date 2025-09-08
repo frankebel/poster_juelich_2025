@@ -2,6 +2,15 @@
 \usetheme{Default}
 \tikzposterlatexaffectionproofoff
 
+\newcommand{\mytitle}{DMFT on the real frequency axis using Exact Diagonalization and Restricted Active Space}
+\title{\parbox{0.83\linewidth}{\mytitle}}
+\author{Frank T. Ebel\textsuperscript{*}, Karsten Held \color{red}{add Martin, Markus?}}
+\institute{
+    Institute of Solid State Physics, TU Wien, 1040 Vienna, Austria
+    \hspace{5cm}
+    \textsuperscript{*}\url{frank.ebel@student.tuwien.ac.at}
+}
+
 % font, typesetting
 \usepackage{fontspec}
 \usepackage[main=english,ngerman]{babel}
@@ -57,26 +66,18 @@
     % citecolor=blue,
     % linkcolor=blue,
     breaklinks=true,
-    pdftitle={\@title},
+    pdftitle={\mytitle},
     pdfauthor={Frank T.\ Ebel},
 }
 
 % misc
 \usepackage{shellesc}
 
-\title{\parbox{\linewidth}{DMFT on the real frequency axis using exact diagonalization and restricted active space}}
-\author{Frank Ebel\textsuperscript{*}, Karsten Held \color{red}{add Martin, Markus?}}
-\institute{
-    Institute of Solid State Physics, TU Wien, 1040 Vienna, Austria
-    \hspace{5cm}
-    \textsuperscript{*}\url{frank.ebel@student.tuwien.ac.at}
-}
-
 % commands
 \newcommand{\fe}[1]{{\color{red}(#1)}}
 
 \begin{document}
 
-\maketitle
+\maketitle[width=0.8\textwidth]
 
 \end{document}
