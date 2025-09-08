@@ -80,4 +80,29 @@
 
 \maketitle[width=0.8\textwidth]
 
+\begin{columns}
+    % first column
+    \column{0.4}
+    \block{Motivation}
+    {
+        \begin{itemize}
+            \item DMFT without any broadening
+            \item real frequencies to avoid analytic continuation
+            \item Lanczos-based method coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
+            \item Dyson equation gives nonphysical self-energy for finite bath
+            \item improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
+                  using Schur complement \fe{TODO\@: cite Aleksandrs}
+            \item goal: look at metal-insulator transition
+                  on the Bethe lattice with semicircular density
+                  at half-filling
+        \end{itemize}
+    }
+
+    \block{References}
+    {
+        \printbibliography[heading=none]
+    }
+
+\end{columns}
+
 \end{document}
