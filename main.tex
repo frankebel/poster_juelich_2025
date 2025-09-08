@@ -1,0 +1,75 @@
+\documentclass[25pt, a0paper, portrait]{tikzposter}
+\usetheme{Default}
+\tikzposterlatexaffectionproofoff
+
+% font typesetting
+\usepackage{fontspec}
+\usepackage[main=english,ngerman]{babel}
+
+% math and science typesetting
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math} % load after ams
+\unimathsetup{math-style=ISO}
+
+% graphics, colors, captions, tables
+\usepackage{caption}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{pgfplots}
+\usepgfplotslibrary{colorbrewer}
+\usepgfplotslibrary{groupplots}
+\pgfplotsset{
+    compat=1.18,
+    cycle list/Set1,
+}
+\usepackage{pgfplotstable}
+\pgfplotstableset{col sep=comma}
+\usepackage[labelformat=simple]{subcaption}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usetikzlibrary{external}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{fit}
+\usetikzlibrary{positioning}
+\usetikzlibrary{shapes.symbols}
+% \tikzexternalize[prefix=build] % do not clutter root directory
+\input{graphics/tikz/global.tex}
+\usepackage{xcolor}
+\renewcommand\thesubfigure{(\alph{subfigure})}
+
+% references, bibliography, and links
+\usepackage[backend=biber,style=phys,biblabel=brackets]{biblatex}
+\usepackage{csquotes} % required by biblatex
+\usepackage{hyperref}
+\addbibresource{ref.bib}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=blue,
+    citecolor=blue,
+    linkcolor=blue,
+    breaklinks=true,
+    pdftitle={\@title},
+    pdfauthor={Frank T.\ Ebel},
+}
+
+% misc
+\usepackage{shellesc}
+
+\title{\parbox{\linewidth}{DMFT on the real frequency axis using exact diagonalization and restricted active space}}
+\author{Frank Ebel\textsuperscript{*}, Karsten Held \color{red}{add Martin, Markus?}}
+\institute{
+    Institute of Solid State Physics, TU Wien, 1040 Vienna, Austria
+    \hspace{5cm}
+    \textsuperscript{*}\url{frank.ebel@student.tuwien.ac.at}
+}
+
+% commands
+\newcommand{\fe}[1]{{\color{red}(#1)}}
+
+\begin{document}
+
+\maketitle
+
+\end{document}
