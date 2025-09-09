@@ -39,13 +39,10 @@
 \usepackage[labelformat=simple]{subcaption}
 \usepackage{tabularx}
 \usepackage{tikz}
-\usetikzlibrary{external}
 \usetikzlibrary{arrows.meta}
 \usetikzlibrary{fit}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.symbols}
-% \tikzexternalize[prefix=build] % do not clutter root directory
-\input{graphics/tikz/global.tex}
 \usepackage{xcolor}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 
@@ -75,6 +72,7 @@
 
 % commands
 \newcommand{\fe}[1]{{\color{red}(#1)}}
+\DeclarePairedDelimiter\ket{\lvert}{\rangle}%
 
 \begin{document}
 
@@ -101,6 +99,20 @@
     \block{References}
     {
         \printbibliography[heading=none]
+    }
+
+    % second column
+    \column{0.6}
+
+    \block{Anderson impurity model}
+    {
+        \centering
+        \input{graphics/tikz/aim.tex}
+        \begin{itemize}
+            \item natural impurity orbitals~\cite{Lu2014,Lu2019}
+            \item $\ket{\phi_I}$: $L$ sites solved by Exact Diagonalization
+            \item $\ket{\phi_{II}}$: restricted to at most $p$ excitations
+        \end{itemize}
     }
 
 \end{columns}
