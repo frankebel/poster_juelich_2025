@@ -1,0 +1,60 @@
+%! TeX root = ../../main.tex
+
+\begin{tikzpicture}
+    \begin{groupplot}
+        [
+            group style=
+                {
+                    group size=2 by 1,
+                    horizontal sep=4cm,
+                },
+            width=12cm,
+        ]
+
+        \nextgroupplot
+        [
+            xmin=-4,
+            xmax=4,
+            ymin=-10,
+            ymax=10,
+            xlabel=$\omega/D$,
+            ylabel=$(\Re\Sigma - \Sigma^\mathrm{H})/D$,
+            xtick distance=2.0,
+            ytick distance=5.0,
+            legend entries=
+                {
+                    $U=2.4D$,
+                    $U=3.5D$,
+                },
+            legend style=
+                {
+                    legend pos=south east,
+                },
+            very thick,
+        ]
+        \addplot+ table [x=omega, y=ReU2.4] {data/self-energy.csv};
+        \addplot+
+        [
+            % show divergence
+            unbounded coords=jump,
+            x filter/.expression={abs(x) < 0.02 ? nan : x},
+        ]
+        table [x=omega, y=ReU3.5] {data/self-energy.csv};
+
+        \nextgroupplot
+        [
+            xmin=-4,
+            xmax=4,
+            ymin=0,
+            ymax=10,
+            xlabel=$\omega/D$,
+            ylabel=$-\Im\Sigma/D$,
+            xtick distance=2.0,
+            ytick distance=2.5,
+            very thick,
+        ]
+        \addplot+ table [x=omega, y=-ImU2.4] {data/self-energy.csv};
+        \addplot+ table [x=omega, y=-ImU3.5] {data/self-energy.csv};
+
+    \end{groupplot}
+\end{tikzpicture}

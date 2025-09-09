@@ -73,6 +73,7 @@
 % commands
 \newcommand{\fe}[1]{{\color{red} (#1)}}
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}%
+\AtBeginDocument{\renewcommand\Re{\mathrm{Re}\>}}
 \AtBeginDocument{\renewcommand\Im{\mathrm{Im}\>}}
 
 \begin{document}
@@ -120,6 +121,12 @@
             \item $\ket{\phi_I}$: $L$ sites solved by Exact Diagonalization
             \item $\ket{\phi_{II}}$: restricted to at most $p$ excitations
         \end{itemize}
+    }
+
+    \block{Self-energy}
+    {
+        \centering
+        \input{graphics/tikz/self-energy.tex}
     }
 
 \end{columns}
