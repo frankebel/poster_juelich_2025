@@ -1,6 +1,6 @@
 \documentclass[20pt, a1paper, portrait]{tikzposter}
 \usetheme{Default}
-\tikzposterlatexaffectionproofoff
+\tikzposterlatexaffectionproofoff%
 
 \newcommand{\mytitle}{DMFT on the real frequency axis using Exact Diagonalization and Restricted Active Space}
 \title{\parbox{0.83\linewidth}{\mytitle}}
@@ -47,7 +47,7 @@
 \renewcommand\thesubfigure{(\alph{subfigure})}
 
 % references, bibliography, and links
-\usepackage
+\usepackage%
 [
     backend=biber,
     style=phys,
@@ -71,8 +71,9 @@
 \usepackage{shellesc}
 
 % commands
-\newcommand{\fe}[1]{{\color{red}(#1)}}
+\newcommand{\fe}[1]{{\color{red} (#1)}}
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}%
+\AtBeginDocument{\renewcommand\Im{\mathrm{Im}\>}}
 
 \begin{document}
 
