@@ -29,7 +29,6 @@
             yticklabel style={
                     /pgf/number format/fixed,
                 },
-            very thick,
             unbounded coords=discard,
         ]
         \addplot [color=gray, mark=*] table [x=U, y=D_NRG_met] {data/D.csv};
@@ -62,7 +61,6 @@
                     {$L=2$, $p=2$, lin.},
                 },
             legend cell align=left,
-            very thick,
         ]
         \addplot [color=gray, mark=*] table [x=U, y=Z_NRG] {data/Z.csv};
         \pgfplotsset{cycle list shift=-1}

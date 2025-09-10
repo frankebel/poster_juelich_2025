@@ -33,6 +33,14 @@
 \pgfplotsset{
     compat=1.18,
     cycle list/Set1,
+    every axis/.append style=
+    {
+        line width=2pt,
+    },
+    every axis plot/.append style=
+    {
+        line width=3.5pt,
+    },
 }
 \usepackage{pgfplotstable}
 \pgfplotstableset{col sep=comma}

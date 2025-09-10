@@ -10,7 +10,6 @@
                 inner sep=0pt,
                 minimum size=10mm,
                 draw=black,
-                very thick,
                 path picture=
                     {
                         \fill[blue] (path picture bounding box.south east)
@@ -24,7 +23,6 @@
                 inner sep=0pt,
                 minimum size=10mm,
                 draw=black,
-                very thick,
                 path picture=
                     {
                         \fill[blue] (path picture bounding box.south east)
@@ -32,6 +30,7 @@
                             (path picture bounding box.north west)$);
                     }
             },
+        line width=2pt,
     ]
 
     % sites
@@ -89,6 +88,7 @@
         rounded corners,
         fit=(impuritylabel) (v3label) (c3label) (v3) (c3),
         label=below:$\ket{\phi_I}$,
+        line width=0.5pt,
     ] {};
     \node
     [
@@ -97,5 +97,6 @@
         rounded corners,
         fit=(v4label) (c4label) (v4) (c4) (v6) (c6),
         label=below:$\ket{\phi_{II}}$,
+        line width=0.5pt,
     ] {};
 \end{tikzpicture}

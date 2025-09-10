@@ -30,7 +30,6 @@
                 {
                     legend pos=south east,
                 },
-            very thick,
         ]
         \addplot+ table [x=omega, y=ReU2.4] {data/self-energy.csv};
         \addplot+
@@ -51,7 +50,6 @@
             ylabel=$-\Im\Sigma/D$,
             xtick distance=2.0,
             ytick distance=2.5,
-            very thick,
         ]
         \addplot+ table [x=omega, y=-ImU2.4] {data/self-energy.csv};
         \addplot+ table [x=omega, y=-ImU3.5] {data/self-energy.csv};
