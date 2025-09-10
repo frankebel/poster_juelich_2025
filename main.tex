@@ -101,18 +101,22 @@
 \begin{columns}
     % first column
     \column{0.4}
-    \block{Motivation}
+    \block{Idea}
     {
         \begin{itemize}
-            \item DMFT without any broadening
             \item real frequencies to avoid analytic continuation
+            \item represent functions using poles without any broadening
+                  \begin{equation*}
+                      f(\omega) = \sum_i \frac{w_i}{\omega +\mathrm{i}0^+-\epsilon_i}
+                  \end{equation*}
             \item Lanczos-based method coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
-            \item Dyson equation gives nonphysical self-energy for finite bath
-            \item improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
+            \item Dyson equation gives nonphysical self-energy for finite bath\\
+                  $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
                   using Schur complement \fe{TODO\@: cite Aleksandrs}
             \item goal: look at metal-insulator transition
-                  on the Bethe lattice with semicircular density
-                  at half-filling
+                  on the Bethe lattice
+                  by varying Coulomb interaction $U$ and compare against NRG
+                  at $T=0$
         \end{itemize}
     }
 
