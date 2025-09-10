@@ -15,6 +15,8 @@
 \usepackage{fontspec}
 \usepackage[main=english,ngerman]{babel}
 \usepackage{microtype}
+\usepackage{pdfrender}
+\usepackage{pifont} %cross
 
 % math and science typesetting
 \usepackage{amsmath}
@@ -83,6 +85,12 @@
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}%
 \AtBeginDocument{\renewcommand\Re{\mathrm{Re}\>}}
 \AtBeginDocument{\renewcommand\Im{\mathrm{Im}\>}}
+\newcommand*{\boldcheckmark}{%
+  \textpdfrender{
+    TextRenderingMode=FillStroke,
+    LineWidth=.5pt, % half of the line width is outside the normal glyph
+  }{\checkmark}%
+}
 
 \begin{document}
 
@@ -106,8 +114,13 @@
         \end{itemize}
     }
 
-    \block{Spectral function}
+    \block{Spectral function $A(\omega)$}
     {
+        \begin{itemize}
+            \item non-interacting density $A_0(\omega) \propto \sqrt{D^2-\omega^2}$
+            \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands
+            \item[\color{red}\ding{55}] pinning for metal $\muppi DA(\omega=0) = 2$
+        \end{itemize}
         \centering
         \input{graphics/tikz/spectrum.tex}
     }
@@ -131,14 +144,26 @@
         \end{itemize}
     }
 
-    \block{Self-energy}
+    \block{Self-energy $\Sigma(\omega)$}
     {
-        \centering
-        \input{graphics/tikz/self-energy.tex}
+        \begin{center}
+            \hspace{2cm}
+            \textcolor{green}{$\boldcheckmark$} divergence for insulator at $\omega=0$
+            \hspace{2cm}
+            \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
+            \vspace{0.5cm}
+            \input{graphics/tikz/self-energy.tex}%
+        \end{center}
     }
 
     \block{Metal-insulator transition}
     {
+        \begin{itemize}
+            \item compare against NRG
+                  \hspace{9cm}
+                  $Z = \frac{m_\mathrm{e}}{m^*} = \left(1 - \frac{\partial\Re\Sigma(0)}{\partial\omega}\right)^{-1}$
+        \end{itemize}
+        \vspace{0.5cm}
         \centering
         \input{graphics/tikz/metal-insulator_transition.tex}
     }
