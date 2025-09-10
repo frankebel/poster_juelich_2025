@@ -80,6 +80,7 @@
 
 % misc
 \usepackage{shellesc}
+\usepackage{multicol}
 
 % commands
 \newcommand{\fe}[1]{{\color{red} (#1)}}
@@ -136,13 +137,14 @@
 
     \block{Anderson impurity model}
     {
-        \centering
-        \input{graphics/tikz/aim.tex}
-        \begin{itemize}
-            \item natural impurity orbitals~\cite{Lu2014,Lu2019}
-            \item $\ket{\phi_I}$: $L$ sites solved by Exact Diagonalization
-            \item $\ket{\phi_{II}}$: restricted to at most $p$ excitations
-        \end{itemize}
+        \begin{multicols}{2}
+            \input{graphics/tikz/aim.tex}
+            \begin{itemize}
+                \item natural impurity orbitals~\cite{Lu2014,Lu2019}
+                \item $\ket{\phi_I}$: solved by Exact Diagonalization
+                \item $\ket{\phi_{II}}$: restricted to at most $p$ excitations
+            \end{itemize}
+        \end{multicols}
     }
 
     \block{Self-energy $\Sigma(\omega)$}
