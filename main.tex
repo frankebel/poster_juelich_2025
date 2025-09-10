@@ -47,6 +47,11 @@
     {
         line width=3.5pt,
     },
+    every tick/.append style=
+    {
+        color=black,
+        line width=2pt,
+    },
 }
 \usepackage{pgfplotstable}
 \pgfplotstableset{col sep=comma}
@@ -57,6 +62,7 @@
 \usetikzlibrary{fit}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.symbols}
+\tikzset{font={\fontsize{20pt}{12}\selectfont}}
 \usepackage{xcolor}
 \renewcommand\thesubfigure{(\alph{subfigure})}
 
@@ -105,16 +111,20 @@
 \begin{columns}
     % first column
     \column{0.4}
-    \block{Idea}
+    \block{DMFT impurity solver}
     {
         \begin{itemize}
+            \item solve Anderson impurity model for DMFT
             \item real frequencies to avoid analytic continuation
+            \item exact diagonalization cannot handle many sites\\
+                  $\rightarrow$ idea:
+                  add more sites but do not consider all possible states
+            \item Lanczos-based method coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
             \item represent functions using poles without any broadening
                   \begin{equation*}
                       f(\omega) = \sum_i \frac{w_i}{\omega +\mathrm{i}0^+-\epsilon_i}
                   \end{equation*}
-            \item Lanczos-based method coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
-            \item Dyson equation gives nonphysical self-energy for finite bath\\
+            \item Dyson equation gives nonphysical self-energy for discrete bath\\
                   $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
                   using Schur complement \fe{TODO\@: cite Aleksandrs}
             \item goal: look at metal-insulator transition
@@ -138,19 +148,24 @@
     \block{References}
     {
         \printbibliography[heading=none]
+        \textbf{Acknowledgements}\\
+        We are grateful for discussions with Maurits W. Haverkort and Aleksandrs Začinskis.
+        We thank Fabian B. Kugler for NRG data.
     }
 
     % second column
     \column{0.6}
 
-    \block{Anderson impurity model}
+    \block{Exact diagonalization with restricted active space}
     {
         \begin{multicols}{2}
             \input{graphics/tikz/aim.tex}
             \begin{itemize}
                 \item natural impurity orbitals~\cite{Lu2014,Lu2019}
-                \item $\ket{\phi_I}$: solved by Exact Diagonalization
-                \item $\ket{\phi_{II}}$: restricted to at most $p$ excitations
+                \item split system into two components
+                \item $\ket{\phi_I}$: few sites solved by exact diagonalization
+                \item $\ket{\phi_{II}}$: many sites restricted to at most $p$ excitations,
+                      e.g.\ $p=1$: one hole in $v_j$ xor one particle in $c_j$
             \end{itemize}
         \end{multicols}
     }
@@ -170,13 +185,26 @@
     \block{Metal-insulator transition}
     {
         \begin{itemize}
-            \item compare against NRG
-                  \hspace{9cm}
+            \item compare against NRG~\cite{Gauvin-Ndiaye2025}
+                  \hspace{8cm}
                   $Z = \frac{m_\mathrm{e}}{m^*} = \left(1 - \frac{\partial\Re\Sigma(0)}{\partial\omega}\right)^{-1}$
         \end{itemize}
         \vspace{0.5cm}
         \centering
         \input{graphics/tikz/metal-insulator_transition.tex}
+    }
+
+    \block{Summary}
+    {
+        \begin{itemize}
+            \item works quite well to calculate
+                  spectrum,
+                  self-energy,
+                  double occupation,
+                  quasiparticle weight
+            \item exaggerates metallic region somewhat $U_{c2}\approx3.2D$
+            \item outlook: investigate the coexistence region and obtain $U_{c1}$
+        \end{itemize}
     }
 
 \end{columns}
