@@ -1,18 +1,15 @@
 %! TeX root = ../../main.tex
 
 \begin{tikzpicture}
-    \begin{groupplot}
-        [
-            group style=
-                {
+    \begin{groupplot}[
+            group style={
                     group size=2 by 1,
-                    horizontal sep=4cm,
+                    horizontal sep=18mm,
                 },
-            width=12cm,
+            width=7.5cm,
         ]
 
-        \nextgroupplot
-        [
+        \nextgroupplot [
             xmin=-4,
             xmax=4,
             ymin=-10,
@@ -32,16 +29,14 @@
                 },
         ]
         \addplot+ table [x=omega, y=ReU2.4] {data/self-energy.csv};
-        \addplot+
-        [
+        \addplot+ [
             % show divergence
             unbounded coords=jump,
             x filter/.expression={abs(x) < 0.02 ? nan : x},
         ]
         table [x=omega, y=ReU3.5] {data/self-energy.csv};
 
-        \nextgroupplot
-        [
+        \nextgroupplot [
             xmin=-4,
             xmax=4,
             ymin=0,

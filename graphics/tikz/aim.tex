@@ -1,43 +1,37 @@
 %! TeX root = ../../main.tex
 
-\begin{tikzpicture}
-    [
+\begin{tikzpicture}[
         inner sep=2mm,
-        node distance=10mm,
-        impurity/.style=
-            {
+        node distance=2mm,
+        impurity/.style={
                 rectangle,
                 inner sep=0pt,
-                minimum size=10mm,
+                minimum size=6mm,
                 draw=black,
-                path picture=
-                    {
+                path picture={
                         \fill[blue] (path picture bounding box.south east)
                         rectangle ($(path picture bounding box.south west)!#1!
                             (path picture bounding box.north west)$);
                     }
             },
-        bath/.style=
-            {
+        bath/.style={
                 circle,
                 inner sep=0pt,
-                minimum size=10mm,
+                minimum size=6mm,
                 draw=black,
-                path picture=
-                    {
+                path picture={
                         \fill[blue] (path picture bounding box.south east)
                         rectangle ($(path picture bounding box.south west)!#1!
                             (path picture bounding box.north west)$);
                     }
             },
-        line width=2pt,
+        line width=0.5pt,
     ]
 
     % sites
     \node [impurity={0.5}] (impurity) {};
     \node [bath={0.5}] (mirror) [right=of impurity] {};
-    \foreach \i [remember=\i as \lasti] in {1,...,6}
-        {
+    \foreach \i [remember=\i as \lasti] in {1,...,6}{
             \ifnum\i=1
                 \node [bath={0.85}] (v\i) [below=of mirror] {};
                 \node [bath={0.15}] (c\i) [above=of mirror] {};
@@ -47,8 +41,8 @@
                     \node [bath={0.1}] (c\i) [right=of c\lasti] {};
                 \else
                     \ifnum\i=4
-                        \node [bath={1.0}] (v\i) [right=15mm of v\lasti] {};
-                        \node [bath={0.0}] (c\i) [right=15mm of c\lasti] {};
+                        \node [bath={1.0}] (v\i) [right=10mm of v\lasti] {};
+                        \node [bath={0.0}] (c\i) [right=10mm of c\lasti] {};
                     \else
                         \node [bath={1.0}] (v\i) [right=of v\lasti] {};
                         \node [bath={0.0}] (c\i) [right=of c\lasti] {};
@@ -60,12 +54,12 @@
     % labels (separate node for box fit below)
     \node (impuritylabel)[left=0mm of impurity] {$i$};
     \node (mirrorlabel)[right=0mm of mirror] {$m$};
-    \node (v1label)[below=0mm of v1] {$v_1$};
-    \node (v3label)[below=0mm of v3] {$v_{L\vphantom{+1}}$}; % phantom for bounding box size
-    \node (v4label)[below=0mm of v4] {$v_{L+1}$};
-    \node (c1label)[above=0mm of c1] {$c_1$};
-    \node (c3label)[above=0mm of c3] {$c_{L\vphantom{+1}}$}; % phantom for bounding box size
-    \node (c4label)[above=0mm of c4] {$c_{L+1}$};
+    \node (v1label)[below=0mm of v1,inner sep=1mm] {$v_1$};
+    \node (v3label)[below=0mm of v3,inner sep=1mm] {$v_{L\vphantom{+1}}$}; % phantom for bounding box size
+    \node (v4label)[below=0mm of v4,inner sep=1mm] {$v_{L+1}$};
+    \node (c1label)[above=0mm of c1,inner sep=1mm] {$c_1$};
+    \node (c3label)[above=0mm of c3,inner sep=1mm] {$c_{L\vphantom{+1}}$}; % phantom for bounding box size
+    \node (c4label)[above=0mm of c4,inner sep=1mm] {$c_{L+1}$};
 
 
     % connect sites
@@ -74,15 +68,13 @@
     \draw (impurity.north) to [out=90,in=180] (c1.west);
     \draw (mirror.south) to (v1.north);
     \draw (mirror.north) to (c1.south);
-    \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,6}
-        {
+    \foreach \i [remember=\i as \lasti (initially 1)] in {2,...,6}{
             \draw (v\lasti.east) -- (v\i.west);
             \draw (c\lasti.east) -- (c\i.west);
         }
 
     % bounding boxes
-    \node
-    [
+    \node [
         draw,
         rectangle,
         rounded corners,
@@ -90,8 +82,7 @@
         label=below:$\ket{\phi_I}$,
         line width=0.5pt,
     ] {};
-    \node
-    [
+    \node [
         draw,
         rectangle,
         rounded corners,

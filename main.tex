@@ -1,23 +1,20 @@
-\documentclass[20pt, a1paper, portrait]{tikzposter}
-\usetheme{Default}
-\tikzposterlatexaffectionproofoff%
-\definecolor{tublue}{RGB}{0,102,153}
-\colorlet{blocktitlebgcolor}{tublue}
-\definecolor{tulightblue}{RGB}{166,213,236}
-\colorlet{backgroundcolor}{tulightblue}
+\documentclass[12pt]{article}
 
-\newcommand{\mytitle}{DMFT on the real frequency axis using Exact Diagonalization and Restricted Active Space}
-\title{\parbox{0.83\linewidth}{\mytitle}}
-\author{Frank T. Ebel\textsuperscript{*}, Karsten Held \color{red}{add Martin, Markus?}}
-\institute{
-    Institute of Solid State Physics, TU Wien, 1040 Vienna, Austria
-    \hspace{5cm}
-    \textsuperscript{*}\url{frank.ebel@student.tuwien.ac.at}
-}
+\usepackage[a3paper,portrait]{geometry}
+\usepackage[poster]{tcolorbox}
+\pagestyle{empty}
+\def\lcol{0.8} % width of left column
+\def\rcol{1.2} % width of right column
+
+
+\title{DMFT on the real frequency axis using exact diagonalization and restricted active space}
+\author{Frank T. Ebel, Martin Braß, Markus Wallerberger, and Karsten Held}
 
 % font, typesetting
 \usepackage{fontspec}
-\usepackage[main=english,ngerman]{babel}
+\usepackage{enumitem}
+\setitemize{itemsep=1pt}
+\usepackage[main=english]{babel}
 \usepackage{microtype}
 \usepackage{pdfrender}
 \usepackage{pifont} %cross
@@ -41,16 +38,16 @@
     cycle list/Set1,
     every axis/.append style=
     {
-        line width=2pt,
+        line width=1pt,
     },
     every axis plot/.append style=
     {
-        line width=3.5pt,
+        line width=1.5pt,
     },
     every tick/.append style=
     {
         color=black,
-        line width=2pt,
+        line width=1pt,
     },
 }
 \usepackage{pgfplotstable}
@@ -62,18 +59,17 @@
 \usetikzlibrary{fit}
 \usetikzlibrary{positioning}
 \usetikzlibrary{shapes.symbols}
-\tikzset{font={\fontsize{20pt}{12}\selectfont}}
+\tikzset{font={\fontsize{10pt}{2}\selectfont}}
 \usepackage{xcolor}
-\renewcommand\thesubfigure{(\alph{subfigure})}
+\definecolor{tublue}{RGB}{0,102,153}
+\definecolor{tulightblue}{RGB}{166,213,236}
 
 % references, bibliography, and links
-\usepackage%
-[
+\usepackage[
     backend=biber,
     style=phys,
     biblabel=brackets,
-]
-{biblatex}
+]{biblatex}
 \usepackage{csquotes} % required by biblatex
 \usepackage{hyperref}
 \addbibresource{ref.bib}
@@ -84,12 +80,11 @@
     % citecolor=blue,
     % linkcolor=blue,
     breaklinks=true,
-    pdftitle={\mytitle},
+    pdftitle={\@title},
     pdfauthor={Frank T.\ Ebel},
 }
 
 % misc
-\usepackage{shellesc}
 \usepackage{multicol}
 
 % commands
@@ -97,7 +92,7 @@
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}%
 \AtBeginDocument{\renewcommand\Re{\mathrm{Re}\>}}
 \AtBeginDocument{\renewcommand\Im{\mathrm{Im}\>}}
-\newcommand*{\boldcheckmark}{%
+\newcommand*{\boldcheckmark}{
   \textpdfrender{
     TextRenderingMode=FillStroke,
     LineWidth=.5pt, % half of the line width is outside the normal glyph
@@ -106,14 +101,54 @@
 
 \begin{document}
 
-\maketitle[width=0.8\textwidth]
+\begin{tcbposter}[
+        coverage = {
+                spread,
+                interior style={color=tulightblue}, % background color
+            },
+        poster = {
+                % showframe,
+                rows=5,
+                columns=2,
+                spacing=0.4cm,
+            },
+        boxes = {
+                arc=3mm,
+                boxrule=2mm,
+                colback=white,
+                opacityback=1,
+                colframe=tublue,
+                title style={tublue},
+                fonttitle=\centering\bfseries\Large
+            },
+    ]
 
-\begin{columns}
-    % first column
-    \column{0.4}
-    \block{DMFT impurity solver}
-    {
-        \begin{itemize}
+    \posterbox[
+        halign=center,
+        valign=center,
+        % colupper=white,
+        % colback=tublue,
+    ]{
+        name=title,
+        column=1,
+        span=2,
+        below=top,
+    }{
+        {\bfseries\Huge\@title}\\
+        \vspace{5mm}
+        {\bfseries\Large\@author}\\
+        \vspace{5mm}
+        Institute of Solid State Physics, TU Wien, 1040 Vienna, Austria\hspace{5cm}
+        \url{frank.ebel@student.tuwien.ac.at}
+    }
+
+    \posterbox[adjusted title=DMFT impurity solver]{
+        name=dmft-impurity-solver,
+        column=1,
+        span=\lcol,
+        below=title,
+    }{
+        \begin{itemize}[leftmargin=*]
             \item solve Anderson impurity model for DMFT
             \item real frequencies to avoid analytic continuation
             \item exact diagonalization cannot handle many sites\\
@@ -134,9 +169,13 @@
         \end{itemize}
     }
 
-    \block{Spectral function $A(\omega)$}
-    {
-        \begin{itemize}
+    \posterbox[adjusted title=Spectral function $A(\omega)$]{
+        name=spectral-function,
+        column=1,
+        span=\lcol,
+        below=dmft-impurity-solver,
+    }{
+        \begin{itemize}[leftmargin=*]
             \item non-interacting density $A_0(\omega) \propto \sqrt{D^2-\omega^2}$
             \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands
             \item[\color{red}\ding{55}] pinning for metal $\muppi DA(\omega=0) = 2$
@@ -145,22 +184,30 @@
         \input{graphics/tikz/spectrum.tex}
     }
 
-    \block{References}
-    {
+    \posterbox[adjusted title=References]{
+        name=references,
+        column=1,
+        span=\lcol,
+        between=spectral-function and bottom,
+    }{
         \printbibliography[heading=none]
-        \textbf{Acknowledgements}\\
-        We are grateful for discussions with Maurits W. Haverkort and Aleksandrs Začinskis.
+
+        \subsubsection*{Acknowledgements}
+        We are grateful for fruitful discussions with Maurits W. Haverkort and Aleksandrs Začinskis.
         We thank Fabian B. Kugler for NRG data.
     }
 
-    % second column
-    \column{0.6}
 
-    \block{Exact diagonalization with restricted active space}
-    {
+
+    \posterbox[adjusted title=Exact diagonalization with restricted active space]{
+        name=sketch-aim,
+        column*=2,
+        span=\rcol,
+        below=title,
+    }{
         \begin{multicols}{2}
             \input{graphics/tikz/aim.tex}
-            \begin{itemize}
+            \begin{itemize}[leftmargin=*]
                 \item natural impurity orbitals~\cite{Lu2014,Lu2019}
                 \item split system into two components
                 \item $\ket{\phi_I}$: few sites solved by exact diagonalization
@@ -170,33 +217,44 @@
         \end{multicols}
     }
 
-    \block{Self-energy $\Sigma(\omega)$}
-    {
-        \begin{center}
-            \hspace{2cm}
-            \textcolor{green}{$\boldcheckmark$} divergence for insulator at $\omega=0$
-            \hspace{2cm}
-            \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
-            \vspace{0.5cm}
-            \input{graphics/tikz/self-energy.tex}%
-        \end{center}
+    \posterbox[adjusted title=Self-energy $\Sigma(\omega)$]{
+        name=self-energy,
+        column*=2,
+        span=\rcol,
+        below=sketch-aim,
+    }{
+        \hspace{8mm}
+        \textcolor{green}{$\boldcheckmark$} divergence for insulator at $\omega=0$
+        \hspace{15mm}
+        \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
+        \vspace{0.5cm}
+        \centering
+        \input{graphics/tikz/self-energy.tex}
     }
 
-    \block{Metal-insulator transition}
-    {
-        \begin{itemize}
+    \posterbox[adjusted title=Metal-insulator transition]{
+        name=metal-insulator-transition,
+        column*=2,
+        span=\rcol,
+        below=self-energy,
+    }{
+        \begin{itemize}[leftmargin=*]
             \item compare against NRG~\cite{Gauvin-Ndiaye2025}
-                  \hspace{8cm}
+                  \hspace{4.5cm}
                   $Z = \frac{m_\mathrm{e}}{m^*} = \left(1 - \frac{\partial\Re\Sigma(0)}{\partial\omega}\right)^{-1}$
         \end{itemize}
-        \vspace{0.5cm}
+        \vspace{2mm}
         \centering
         \input{graphics/tikz/metal-insulator_transition.tex}
     }
 
-    \block{Summary}
-    {
-        \begin{itemize}
+    \posterbox[adjusted title=Summary]{
+        name=references,
+        column*=2,
+        span=\rcol,
+        between=metal-insulator-transition and bottom,
+    }{
+        \begin{itemize}[leftmargin=*]
             \item works quite well to calculate
                   spectrum,
                   self-energy,
@@ -207,6 +265,6 @@
         \end{itemize}
     }
 
-\end{columns}
+\end{tcbposter}
 
 \end{document}

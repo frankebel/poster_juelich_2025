@@ -1,14 +1,12 @@
 %! TeX root = ../../main.tex
 
 \begin{tikzpicture}
-    \begin{groupplot}
-        [
-            group style=
-                {
+    \begin{groupplot}[
+            group style={
                     group size=2 by 1,
-                    horizontal sep=4cm,
+                    horizontal sep=18mm,
                 },
-            width=12cm,
+            width=7.5cm,
             cycle multiindex* list={
                     Set1\nextlist%
                     mark list*\nextlist
@@ -21,8 +19,7 @@
                 },
         ]
 
-        \nextgroupplot
-        [
+        \nextgroupplot [
             ymin=0,
             title=double occupation,
             xlabel=$U/D$,
@@ -33,13 +30,11 @@
         ]
         \addplot [color=gray, mark=*] table [x=U, y=D_NRG_met] {data/D.csv};
         \addplot [color=gray, mark=*, forget plot] table [x=U, y=D_NRG_ins] {data/D.csv};
-        \addplot [color=gray, mark=none, dashed, forget plot] coordinates
-            {
+        \addplot [color=gray, mark=none, dashed, forget plot] coordinates {
                 (2.8,0.0255)
                 (2.95,0.016)
             };
-        \addplot [color=gray, mark=none, dashed, forget plot] coordinates
-            {
+        \addplot [color=gray, mark=none, dashed, forget plot] coordinates {
                 (2.37,0.056)
                 (2.37,0.0275)
             };
@@ -52,8 +47,7 @@
         \addplot+ table [x=U, y=D_L1_p2_log] {data/D.csv};
         \addplot+ table [x=U, y=D_L2_p2_lin] {data/D.csv};
 
-        \nextgroupplot
-        [
+        \nextgroupplot [
             ymin=0,
             title=quasiparticle weight,
             xlabel=$U/D$,
@@ -69,8 +63,7 @@
             legend cell align=left,
         ]
         \addplot [color=gray, mark=*] table [x=U, y=Z_NRG] {data/Z.csv};
-        \addplot [color=gray, mark=*, dashed, forget plot] coordinates
-            {
+        \addplot [color=gray, mark=*, dashed, forget plot] coordinates {
                 (2.8,0.0252)
                 (2.95,0.0)
             };
