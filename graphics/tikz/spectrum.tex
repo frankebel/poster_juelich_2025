@@ -12,12 +12,23 @@
             xtick distance=2.0,
             ytick distance=0.5,
             legend entries={
+                    $U=0$,
                     $U=2.4D$,
                     $U=3.5D$,
                 },
+            legend cell align=left,
         ]
 
+        \addplot [
+            gray,
+            dashed,
+            domain=-1:1,
+            samples=100,
+        ]
+        {2*sqrt(1-x^2)};
+        \pgfplotsset{cycle list shift=-1}
         \addplot+ table [x=omega, y=U2.4] {data/spectrum.csv};
         \addplot+ table [x=omega, y=U3.5] {data/spectrum.csv};
+        \node [right] at (rel axis cs:0.02,0.9) {$\delta_\mathrm{Gauss}=0.04D$};
     \end{axis}
 \end{tikzpicture}

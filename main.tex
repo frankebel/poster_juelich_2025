@@ -69,6 +69,7 @@
     backend=biber,
     style=phys,
     biblabel=brackets,
+    maxnames=2,
 ]{biblatex}
 \usepackage{csquotes} % required by biblatex
 \usepackage{hyperref}
@@ -142,8 +143,8 @@
         \url{frank.ebel@student.tuwien.ac.at}
     }
 
-    \posterbox[adjusted title=DMFT impurity solver]{
-        name=dmft-impurity-solver,
+    \posterbox[adjusted title=Problem]{
+        name=problem,
         column=1,
         span=\lcol,
         below=title,
@@ -151,17 +152,13 @@
         \begin{itemize}[leftmargin=*]
             \item solve Anderson impurity model for DMFT
             \item real frequencies to avoid analytic continuation
-            \item exact diagonalization cannot handle many sites\\
-                  $\rightarrow$ idea:
-                  add more sites but do not consider all possible states
-            \item Lanczos-based method coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
-            \item represent functions using poles without any broadening
+            \item exact diagonalization cannot handle many sites $N$,
+                  binomial scaling
                   \begin{equation*}
-                      f(\omega) = \sum_i \frac{w_i}{\omega +\mathrm{i}0^+-\epsilon_i}
+                      \binom{2N}{N} \approx \frac{4^N}{\sqrt{\pi N}}
                   \end{equation*}
-            \item Dyson equation gives nonphysical self-energy for discrete bath\\
-                  $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
-                  using Schur complement \fe{TODO\@: cite Aleksandrs}
+            \item idea: add more sites but do not consider all possible states,
+                  polynomial scaling $N^p$
             \item goal: look at metal-insulator transition
                   on the Bethe lattice
                   by varying Coulomb interaction $U$ and compare against NRG
@@ -169,15 +166,44 @@
         \end{itemize}
     }
 
+    \posterbox[adjusted title=Method]{
+        name=method,
+        column*=2,
+        span=\rcol,
+        below=title,
+    }{
+        \begin{itemize}[leftmargin=*]
+            \item Lanczos algorithm coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
+            \item represent functions using poles without any broadening
+                  \begin{equation*}
+                      f(\omega) = \sum_i \frac{w_i}{\omega +\mathrm{i}0^+-\epsilon_i}
+                  \end{equation*}
+            \item Dyson equation gives nonphysical self-energy for discrete bath\\
+                  $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
+                  using Schur complement \fe{TODO\@: cite Aleksandrs}
+        \end{itemize}
+        \begin{multicols}{2}
+            \begin{itemize}[leftmargin=*]
+                \item natural impurity orbitals~\cite{Lu2014,Lu2019}
+                \item split system into two components
+                \item $\ket{\phi_I}$: few sites solved by exact diagonalization
+                \item $\ket{\phi_{II}}$: many sites restricted to at most $p$ excitations,
+                      e.g.\ $p=1$: one hole in $v_j$ xor one particle in $c_j$
+            \end{itemize}
+            \columnbreak%
+            \input{graphics/tikz/aim.tex}
+        \end{multicols}
+    }
+
     \posterbox[adjusted title=Spectral function $A(\omega)$]{
         name=spectral-function,
         column=1,
         span=\lcol,
-        below=dmft-impurity-solver,
+        below=problem,
     }{
         \begin{itemize}[leftmargin=*]
             \item non-interacting density $A_0(\omega) \propto \sqrt{D^2-\omega^2}$
-            \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands
+            \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands (cf.~\cite{Lee2017})
             \item[\color{red}\ding{55}] pinning for metal $\muppi DA(\omega=0) = 2$
         \end{itemize}
         \centering
@@ -192,42 +218,21 @@
     }{
         \printbibliography[heading=none]
 
-        \subsubsection*{Acknowledgements}
+        \textbf{Acknowledgements}\\
         We are grateful for fruitful discussions with Maurits W. Haverkort and Aleksandrs Začinskis.
         We thank Fabian B. Kugler for NRG data.
-    }
-
-
-
-    \posterbox[adjusted title=Exact diagonalization with restricted active space]{
-        name=sketch-aim,
-        column*=2,
-        span=\rcol,
-        below=title,
-    }{
-        \begin{multicols}{2}
-            \input{graphics/tikz/aim.tex}
-            \begin{itemize}[leftmargin=*]
-                \item natural impurity orbitals~\cite{Lu2014,Lu2019}
-                \item split system into two components
-                \item $\ket{\phi_I}$: few sites solved by exact diagonalization
-                \item $\ket{\phi_{II}}$: many sites restricted to at most $p$ excitations,
-                      e.g.\ $p=1$: one hole in $v_j$ xor one particle in $c_j$
-            \end{itemize}
-        \end{multicols}
     }
 
     \posterbox[adjusted title=Self-energy $\Sigma(\omega)$]{
         name=self-energy,
         column*=2,
         span=\rcol,
-        below=sketch-aim,
+        below=method,
     }{
         \hspace{8mm}
         \textcolor{green}{$\boldcheckmark$} divergence for insulator at $\omega=0$
         \hspace{15mm}
         \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
-        \vspace{0.5cm}
         \centering
         \input{graphics/tikz/self-energy.tex}
     }
@@ -243,23 +248,18 @@
                   \hspace{4.5cm}
                   $Z = \frac{m_\mathrm{e}}{m^*} = \left(1 - \frac{\partial\Re\Sigma(0)}{\partial\omega}\right)^{-1}$
         \end{itemize}
-        \vspace{2mm}
         \centering
         \input{graphics/tikz/metal-insulator_transition.tex}
     }
 
-    \posterbox[adjusted title=Summary]{
+    \posterbox[adjusted title=Conclusion]{
         name=references,
         column*=2,
         span=\rcol,
         between=metal-insulator-transition and bottom,
     }{
         \begin{itemize}[leftmargin=*]
-            \item works quite well to calculate
-                  spectrum,
-                  self-energy,
-                  double occupation,
-                  quasiparticle weight
+            \item quantities improve with increased complexity $L\uparrow$, $p\uparrow$
             \item exaggerates metallic region somewhat $U_{c2}\approx3.2D$
             \item outlook: investigate the coexistence region and obtain $U_{c1}$
         \end{itemize}

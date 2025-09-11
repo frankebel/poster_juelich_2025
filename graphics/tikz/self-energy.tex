@@ -35,6 +35,7 @@
             x filter/.expression={abs(x) < 0.02 ? nan : x},
         ]
         table [x=omega, y=ReU3.5] {data/self-energy.csv};
+        \node [right] at (rel axis cs:0.02,0.9) {$\delta_\mathrm{Gauss}=0.04D$};
 
         \nextgroupplot [
             xmin=-4,
