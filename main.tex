@@ -1,6 +1,6 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 
-\usepackage[a3paper,portrait]{geometry}
+\usepackage[a0paper,portrait]{geometry}
 \usepackage[poster]{tcolorbox}
 \pagestyle{empty}
 \def\lcol{0.8} % width of left column
@@ -11,6 +11,7 @@
 \author{Frank T. Ebel, Martin Braß, Markus Wallerberger, and Karsten Held}
 
 % font, typesetting
+\usepackage[fontsize=34]{fontsize}
 \usepackage{fontspec}
 \usepackage{enumitem}
 \setitemize{itemsep=1pt}
@@ -38,16 +39,20 @@
     cycle list/Set1,
     every axis/.append style=
     {
-        line width=1pt,
+        line width=4pt,
+        legend style={
+            draw=none,
+        },
+        ylabel shift=-0.5em,
     },
     every axis plot/.append style=
     {
-        line width=1.5pt,
+        line width=5pt,
     },
     every tick/.append style=
     {
         color=black,
-        line width=1pt,
+        line width=3pt,
     },
 }
 \usepackage{pgfplotstable}
@@ -61,7 +66,7 @@
     positioning,
     shapes.symbols,
 }
-\tikzset{font={\fontsize{10pt}{2}\selectfont}}
+\tikzset{font={\fontsize{30pt}{2}\selectfont}}
 \usepackage{xcolor}
 \definecolor{tublue}{RGB}{0,102,153}
 \definecolor{tulightblue}{RGB}{166,213,236}
@@ -113,13 +118,13 @@
                 % showframe,
                 rows=5,
                 columns=2,
-                spacing=0.4cm,
+                spacing=1cm,
             },
         boxes = {
                 arc=3mm,
-                boxrule=2mm,
+                boxsep=20pt,
+                boxrule=6mm,
                 colback=white,
-                opacityback=1,
                 colframe=tublue,
                 title style={tublue},
                 fonttitle=\centering\bfseries\Large
@@ -138,9 +143,9 @@
         below=top,
     }{
         {\bfseries\Huge\@title}\\
-        \vspace{5mm}
+        \vspace{10mm}
         {\bfseries\Large\@author}\\
-        \vspace{5mm}
+        \vspace{10mm}
         Institute of Solid State Physics, TU Wien, 1040 Vienna, Austria\hspace{5cm}
         \url{frank.ebel@student.tuwien.ac.at}
     }
@@ -178,12 +183,13 @@
             \item Lanczos algorithm coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
             \item represent functions using poles without any broadening
                   \begin{equation*}
-                      f(\omega) = \sum_i \frac{w_i}{\omega +\mathrm{i}0^+-\epsilon_i}
+                      f(\omega) = \sum_j \frac{w_j}{\omega +\mathrm{i}0^+-\epsilon_j}
                   \end{equation*}
             \item Dyson equation gives nonphysical self-energy for discrete bath\\
                   $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
                   using Schur complement \fe{TODO\@: cite Aleksandrs}
         \end{itemize}
+        \vspace{-1.8em}
         \begin{multicols}{2}
             \begin{itemize}[leftmargin=*]
                 \item natural impurity orbitals~\cite{Lu2014,Lu2019}
@@ -231,12 +237,14 @@
         span=\rcol,
         below=method,
     }{
-        \hspace{8mm}
-        \textcolor{green}{$\boldcheckmark$} divergence for insulator at $\omega=0$
-        \hspace{15mm}
+        \hspace{2.2em}
+        \textcolor{green}{$\boldcheckmark$} divergence at $\omega=0$ for insulator
+        \hspace{3.3em}
         \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
-        \centering
-        \input{graphics/tikz/self-energy.tex}
+        \vspace{-0.5em}
+        \begin{center}
+            \input{graphics/tikz/self-energy.tex}
+        \end{center}
     }
 
     \posterbox[adjusted title=Metal-insulator transition]{
@@ -247,9 +255,10 @@
     }{
         \begin{itemize}[leftmargin=*]
             \item compare against NRG~\cite{Gauvin-Ndiaye2025}
-                  \hspace{4.5cm}
+                  \hspace{0.35\textwidth}
                   $Z = \frac{m_\mathrm{e}}{m^*} = \left(1 - \frac{\partial\Re\Sigma(0)}{\partial\omega}\right)^{-1}$
         \end{itemize}
+        \vspace{-0.5em}
         \centering
         \input{graphics/tikz/metal-insulator_transition.tex}
     }

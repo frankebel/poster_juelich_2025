@@ -1,12 +1,12 @@
 %! TeX root = ../../main.tex
 
 \begin{tikzpicture}[
-        inner sep=2mm,
-        node distance=2mm,
+        inner sep=0.5em,
+        node distance=0.5em,
         impurity/.style={
                 rectangle,
                 inner sep=0pt,
-                minimum size=6mm,
+                minimum size=1.5em,
                 draw=black,
                 path picture={
                         \fill[color=Set1-B] (path picture bounding box.south east)
@@ -17,7 +17,7 @@
         bath/.style={
                 circle,
                 inner sep=0pt,
-                minimum size=6mm,
+                minimum size=1.5em,
                 draw=black,
                 path picture={
                         \fill[color=Set1-B] (path picture bounding box.south east)
@@ -25,7 +25,7 @@
                             (path picture bounding box.north west)$);
                     }
             },
-        line width=0.5pt,
+        line width=0.05em,
     ]
 
     % sites
@@ -41,8 +41,8 @@
                     \node [bath={0.1}] (c\i) [right=of c\lasti] {};
                 \else
                     \ifnum\i=4
-                        \node [bath={1.0}] (v\i) [right=10mm of v\lasti] {};
-                        \node [bath={0.0}] (c\i) [right=10mm of c\lasti] {};
+                        \node [bath={1.0}] (v\i) [right=1.5em of v\lasti] {};
+                        \node [bath={0.0}] (c\i) [right=1.5em of c\lasti] {};
                     \else
                         \node [bath={1.0}] (v\i) [right=of v\lasti] {};
                         \node [bath={0.0}] (c\i) [right=of c\lasti] {};
@@ -52,8 +52,8 @@
         }
 
     % labels (separate node for box fit below)
-    \node (impuritylabel)[left=0mm of impurity] {$i$};
-    \node (mirrorlabel)[right=0mm of mirror] {$m$};
+    \node [inner sep=0pt](impuritylabel)[left=0.2em of impurity] {$i$};
+    \node [inner sep=0pt](mirrorlabel)[right=0.2em of mirror] {$m$};
     \node (v1label)[below=0mm of v1,inner sep=1mm] {$v_1$};
     \node (v3label)[below=0mm of v3,inner sep=1mm] {$v_{L\vphantom{+1}}$}; % phantom for bounding box size
     \node (v4label)[below=0mm of v4,inner sep=1mm] {$v_{L+1}$};
@@ -80,7 +80,8 @@
         rounded corners,
         fit=(impuritylabel) (v3label) (c3label) (v3) (c3),
         label=below:$\ket{\phi_I}$,
-        line width=0.5pt,
+        line width=0.05em,
+        inner sep=0.3em,
     ] {};
     \node [
         draw,
@@ -88,6 +89,7 @@
         rounded corners,
         fit=(v4label) (c4label) (v4) (c4) (v6) (c6),
         label=below:$\ket{\phi_{II}}$,
-        line width=0.5pt,
+        line width=0.05em,
+        inner sep=0.3em,
     ] {};
 \end{tikzpicture}
