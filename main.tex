@@ -19,6 +19,7 @@
 \usepackage{microtype}
 \usepackage{pdfrender}
 \usepackage{pifont} %cross
+\renewcommand{\familydefault}{\sfdefault} % sans-serif
 
 % math and science typesetting
 \usepackage{amsmath}
@@ -105,6 +106,9 @@
     LineWidth=.5pt, % half of the line width is outside the normal glyph
   }{\checkmark}%
 }
+\newcommand{\pk}{\vphantom{k}}
+\newcommand{\pdag}{\vphantom{\dag}}
+\newcommand{\ps}{\vphantom{*}}
 
 \begin{document}
 
@@ -157,6 +161,18 @@
     }{
         \begin{itemize}[leftmargin=*]
             \item solve Anderson impurity model for DMFT
+                  \begin{align*}
+                      H
+                       & =
+                      U n_\uparrow n_\downarrow
+                      +
+                      (\epsilon - \mu) \sum_{\pk\sigma} n_\sigma
+                      +
+                      \sum_{k\sigma} \epsilon_{k\sigma}^{\pdag} c^\dag_{k\sigma} c^{\pdag}_{k\sigma} \\
+                       & +
+                      \sum_{k\sigma} \left(V^{\ps}_{k\sigma} d^\dag_{\pk\sigma} c^{\pdag}_{k\sigma}
+                      + V_{j\sigma}^* c^\dag_{k\sigma} d^{\pdag}_{\pk\sigma} \right)
+                  \end{align*}
             \item real frequencies to avoid analytic continuation
             \item exact diagonalization cannot handle many sites $N$,
                   binomial scaling
@@ -180,13 +196,11 @@
     }{
         \begin{itemize}[leftmargin=*]
             \item Lanczos algorithm coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
-            \item represent functions using poles without any broadening
+            \item represent functions (e.g.\ correlators, self-energy)
+                  using poles without any broadening
                   \begin{equation*}
-                      f(\omega) = \sum_j \frac{w_j}{\omega +\mathrm{i}0^+-\epsilon_j}
+                      f(\omega) = f_0 + \sum_j \frac{w_j}{\omega +\mathrm{i}0^+-\epsilon_j}
                   \end{equation*}
-            \item Dyson equation gives nonphysical self-energy for discrete bath\\
-                  $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
-                  using Schur complement
         \end{itemize}
         \vspace{-1.4em}
         \begin{multicols}{2}
@@ -217,28 +231,19 @@
         \input{graphics/tikz/spectrum.tex}
     }
 
-    \posterbox[adjusted title=References]{
-        name=references,
-        column=1,
-        span=\lcol,
-        between=spectral-function and bottom,
-    }{
-        \printbibliography[heading=none]
-
-        \textbf{Acknowledgements}\\
-        We are grateful for fruitful discussions with Maurits W. Haverkort and Aleksandrs Začinskis.
-        We thank Fabian B. Kugler for NRG data.
-    }
-
     \posterbox[adjusted title=Self-energy $\Sigma(\omega)$]{
         name=self-energy,
         column*=2,
         span=\rcol,
         below=method,
     }{
-        \hspace{2.2em}
+        Dyson equation gives nonphysical self-energy for discrete bath\\
+        $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
+        using Schur complement\\
+        \vspace{0.1em}\\
+        \vphantom{}\hspace{3.4em}
         \textcolor{green}{$\boldcheckmark$} divergence at $\omega=0$ for insulator
-        \hspace{3.3em}
+        \hspace{4.8em}
         \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
         \vspace{-0.5em}
         \begin{center}
@@ -273,6 +278,18 @@
             \item exaggerates metallic region somewhat $U_{c2}\approx3.2D$
             \item outlook: investigate the coexistence region and obtain $U_{c1}$
         \end{itemize}
+    }
+
+    \posterbox[adjusted title=References]{
+        name=references,
+        column=1,
+        span=\lcol,
+        between=spectral-function and bottom,
+    }{
+        \printbibliography[heading=none]
+        \textbf{Acknowledgements}\\
+        We are grateful for fruitful discussions with Maurits W. Haverkort and Aleksandrs Začinskis.
+        We thank Fabian B. Kugler for NRG data.
     }
 
 \end{tcbposter}
