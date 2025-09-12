@@ -93,9 +93,6 @@
     pdfauthor={Frank T.\ Ebel},
 }
 
-% misc
-\usepackage{multicol}
-
 % commands
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}%
 \AtBeginDocument{\renewcommand\Re{\mathrm{Re}\>}}
@@ -109,6 +106,7 @@
 \newcommand{\pk}{\vphantom{k}}
 \newcommand{\pdag}{\vphantom{\dag}}
 \newcommand{\ps}{\vphantom{*}}
+\newcommand{\cemph}[1]{\textcolor{tublue}{#1}} % color emphasize
 
 \begin{document}
 
@@ -160,7 +158,7 @@
         below=title,
     }{
         \begin{itemize}[leftmargin=*]
-            \item solve Anderson impurity model for DMFT
+            \item solve \cemph{Anderson impurity model} for DMFT
                   \begin{align*}
                       H
                        & =
@@ -173,15 +171,15 @@
                       \sum_{k\sigma} \left(V^{\ps}_{k\sigma} d^\dag_{\pk\sigma} c^{\pdag}_{k\sigma}
                       + V_{j\sigma}^* c^\dag_{k\sigma} d^{\pdag}_{\pk\sigma} \right)
                   \end{align*}
-            \item real frequencies to avoid analytic continuation
+            \item \cemph{real frequencies} to avoid analytic continuation
             \item exact diagonalization cannot handle many sites $N$,
-                  binomial scaling
+                  binomial scaling at half-filling
                   \begin{equation*}
                       \binom{2N}{N} \approx \frac{4^N}{\sqrt{\pi N}}
                   \end{equation*}
-            \item idea: add more sites but do not consider all possible states,
-                  polynomial scaling $N^p$
-            \item goal: look at metal-insulator transition
+            \item \cemph{idea:} add more sites but do not consider all possible states,
+                  polynomial scaling $N^p$ (restricted active space)
+            \item \cemph{goal:} look at metal-insulator transition
                   on the Bethe lattice
                   by varying Coulomb interaction $U$ and compare against NRG
                   at $T=0$
@@ -195,7 +193,8 @@
         below=title,
     }{
         \begin{itemize}[leftmargin=*]
-            \item Lanczos algorithm coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
+            \item Lanczos algorithm with restricted active space
+                  coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
             \item represent functions (e.g.\ correlators, self-energy)
                   using poles without any broadening
                   \begin{equation*}
@@ -203,17 +202,23 @@
                   \end{equation*}
         \end{itemize}
         \vspace{-1.4em}
-        \begin{multicols}{2}
+        \begin{minipage}[t]{0.55\linewidth}
             \begin{itemize}[leftmargin=*]
-                \item natural impurity orbitals~\cite{Lu2014,Lu2019}
-                \item split system into two components
-                \item $\ket{\phi_I}$: few sites solved by exact diagonalization
-                \item $\ket{\phi_{II}}$: many sites restricted to at most $p$ excitations,
-                      e.g.\ $p=1$: one hole in $v_j$ xor one particle in $c_j$
+                \item use natural impurity orbitals~\cite{Lu2014,Lu2019}
+                \item split system into two components:
+                      \vspace{-0.6em}
+                      \begin{itemize}[leftmargin=*]
+                          \item $\ket{\phi_I}$: few sites solved by exact diagonalization
+                          \item $\ket{\phi_{II}}$: many sites restricted to at most $p$ excitations,
+                                e.g.\ $p=1$: one hole in $v_j$ xor one particle in $c_j$
+                      \end{itemize}
             \end{itemize}
-            \columnbreak%
+        \end{minipage}%
+        \begin{minipage}[t]{0.45\linewidth}
+            \raggedleft%
+            \vspace*{0pt}
             \input{graphics/tikz/aim.tex}
-        \end{multicols}
+        \end{minipage}
     }
 
     \posterbox[adjusted title=Spectral function $A(\omega)$]{
@@ -224,7 +229,7 @@
     }{
         \begin{itemize}[leftmargin=*]
             \item non-interacting density $A_0(\omega) \propto \sqrt{D^2-\omega^2}$
-            \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands (cf.~\cite{Lee2017})
+            \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands (cf.~\cite{Ganahl2015})
             \item[\color{red}\ding{55}] pinning for metal $\muppi DA(\omega=0) = 2$
         \end{itemize}
         \centering
@@ -238,10 +243,10 @@
         below=method,
     }{
         Dyson equation gives nonphysical self-energy for discrete bath\\
-        $\rightarrow$ use improved symmetric self-energy estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
+        \hspace*{1em} $\rightarrow$ use \cemph{symmetric improved self-energy} estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
         using Schur complement\\
         \vspace{0.1em}\\
-        \vphantom{}\hspace{3.4em}
+        \hspace*{3.4em}
         \textcolor{green}{$\boldcheckmark$} divergence at $\omega=0$ for insulator
         \hspace{4.8em}
         \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
