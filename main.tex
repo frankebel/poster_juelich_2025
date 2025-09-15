@@ -93,12 +93,6 @@
 \DeclarePairedDelimiter\ket{\lvert}{\rangle}%
 \AtBeginDocument{\renewcommand\Re{\mathrm{Re}\>}}
 \AtBeginDocument{\renewcommand\Im{\mathrm{Im}\>}}
-\newcommand*{\boldcheckmark}{
-  \textpdfrender{
-    TextRenderingMode=FillStroke,
-    LineWidth=.5pt, % half of the line width is outside the normal glyph
-  }{\checkmark}%
-}
 \newcommand{\pk}{\vphantom{k}}
 \newcommand{\pdag}{\vphantom{\dag}}
 \newcommand{\ps}{\vphantom{*}}
@@ -225,9 +219,9 @@
     }{
         \begin{itemize}[leftmargin=*]
             \item non-interacting density $A_0(\omega) \propto \sqrt{D^2-\omega^2}$
-            \item[\color{green}$\boldcheckmark$] sharp peaks at inner edge of Hubbard bands
+            \item[\color{green}\ding{51}] sharp peaks at inner edge of Hubbard bands
                   (cf.~\cite{Ganahl2015, Lee2017})
-            \item[\color{red}\ding{55}] pinning for metal $\muppi DA(\omega=0) = 2$
+            \item[\color{red}\ding{56}] pinning for metal $\muppi DA(\omega=0) = 2$
         \end{itemize}
         \centering
         \input{graphics/tikz/spectrum.tex}
@@ -244,9 +238,9 @@
         using Schur complement~\cite{Zacinskis}\\
         \vspace{0.1em}\\
         \hspace*{3.4em}
-        \textcolor{green}{$\boldcheckmark$} divergence at $\omega=0$ for insulator
+        \textcolor{green}{\ding{51}} divergence at $\omega=0$ for insulator
         \hspace{4.8em}
-        \textcolor{green}{$\boldcheckmark$} $\Im\Sigma(\omega=0)=0$ for metal
+        \textcolor{green}{\ding{51}} $\Im\Sigma(\omega=0)=0$ for metal
         \vspace{-0.5em}
         \begin{center}
             \input{graphics/tikz/self-energy.tex}
