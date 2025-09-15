@@ -7,16 +7,16 @@
                     horizontal sep=4em,
                 },
             width=0.42\textwidth,
+            xmin=-3,
+            xmax=3,
+            xtick distance=2.0,
         ]
 
         \nextgroupplot [
-            xmin=-4,
-            xmax=4,
             ymin=-10,
             ymax=10,
             xlabel=$\omega/D$,
             ylabel=$(\Re\Sigma - \Sigma^\mathrm{H})/D$,
-            xtick distance=2.0,
             ytick distance=5.0,
             legend entries=
                 {
@@ -38,13 +38,10 @@
         \node [right] at (rel axis cs:0.02,0.9) {$\delta_\mathrm{Gauss}=0.04D$};
 
         \nextgroupplot [
-            xmin=-4,
-            xmax=4,
             ymin=0,
             ymax=10,
             xlabel=$\omega/D$,
             ylabel=$-\Im\Sigma/D$,
-            xtick distance=2.0,
             ytick distance=2.5,
         ]
         \addplot+ table [x=omega, y=-ImU2.4] {data/self-energy.csv};

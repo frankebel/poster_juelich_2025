@@ -173,9 +173,9 @@
                   \begin{equation*}
                       \binom{2N}{N} \approx \frac{4^N}{\sqrt{\pi N}}
                   \end{equation*}
-            \item \cemph{idea:} add more sites but do not consider all possible states,
+            \item \cemph{idea}: add more sites but do not consider all possible states,
                   polynomial scaling $N^p$ (restricted active space)
-            \item \cemph{goal:} look at metal-insulator transition
+            \item \cemph{goal}: look at metal-insulator transition
                   on the Bethe lattice
                   by varying Coulomb interaction $U$ and compare against NRG
                   at $T=0$
@@ -189,10 +189,10 @@
         below=title,
     }{
         \begin{itemize}[leftmargin=*]
-            \item Lanczos algorithm with restricted active space
+            \item \cemph{Lanczos algorithm} with \cemph{restricted active space}
                   coupling impurity to hundreds of bath sites~\cite{Lu2014,Lu2019}
             \item represent functions (e.g.\ correlators, self-energy)
-                  using poles without any broadening
+                  using \cemph{poles} without broadening
                   \begin{equation*}
                       f(\omega) = f_0 + \sum_j \frac{w_j}{\omega +\mathrm{i}0^+-\epsilon_j}
                   \end{equation*}
@@ -201,12 +201,12 @@
         \begin{minipage}[t]{0.55\linewidth}
             \begin{itemize}[leftmargin=*]
                 \item use natural impurity orbitals~\cite{Lu2014,Lu2019}
-                \item split system into two components:
+                \item split system into \cemph{two components}:
                       \vspace{-0.6em}
                       \begin{itemize}[leftmargin=*]
                           \item $\ket{\phi_I}$: few sites solved by exact diagonalization
                           \item $\ket{\phi_{II}}$: many sites restricted to at most $p$ excitations,
-                                e.g.\ $p=1$: one hole in $v_j$ xor one particle in $c_j$
+                                e.g.\ $p=1$: either one hole in $v_j$ or one particle in $c_j$
                       \end{itemize}
             \end{itemize}
         \end{minipage}%
@@ -275,8 +275,8 @@
         between=metal-insulator-transition and bottom,
     }{
         \begin{itemize}[leftmargin=*]
-            \item quantities improve with increased complexity $L\uparrow$, $p\uparrow$
-            \item exaggerates metallic region somewhat $U_{c2}\approx3.2D$
+            \item results improve with increased $L$, $p$
+            \item overestimates metallic region $U_{c2}\approx3.2D$
             \item outlook: investigate the coexistence region and obtain $U_{c1}$
         \end{itemize}
     }
