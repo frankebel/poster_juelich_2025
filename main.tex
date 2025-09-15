@@ -11,7 +11,7 @@
 \author{Frank T. Ebel, Martin Braß, Markus Wallerberger, and Karsten Held}
 
 % font, typesetting
-\usepackage[fontsize=32]{fontsize}
+\usepackage[fontsize=35]{fontsize}
 \usepackage{fontspec}
 \usepackage{enumitem}
 \setitemize{itemsep=1pt}
@@ -132,7 +132,7 @@
         span=2,
         below=top,
     }{
-        {\bfseries\Huge\@title}\\
+        {\bfseries\Huge\setlength{\spaceskip}{0.3em}\@title}\\
         \vspace{10mm}
         {\bfseries\Large\@author}\\
         \vspace{10mm}
@@ -236,9 +236,9 @@
         \hspace*{1em} $\rightarrow$ use \cemph{symmetric improved self-energy} estimator $\Sigma^\mathrm{IFG}$~\cite{Kugler2022}
         using Schur complement~\cite{Zacinskis}\\
         \vspace{0.1em}\\
-        \hspace*{3.4em}
+        \hspace*{2.6em}
         \textcolor{green}{\ding{51}} divergence at $\omega=0$ for insulator
-        \hspace{4.8em}
+        \hspace{3.8em}
         \textcolor{green}{\ding{51}} $\Im\Sigma(\omega=0)=0$ for metal
         \vspace{-0.5em}
         \begin{center}
