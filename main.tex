@@ -101,32 +101,31 @@
 \begin{document}
 
 \begin{tcbposter}[
-        coverage = {
+        coverage={
                 spread,
-                interior style={color=tulightblue}, % background color
+                interior style={color=tublue!40}, % background color
             },
-        poster = {
+        poster={
                 % showframe,
                 rows=5,
                 columns=2,
                 spacing=1cm,
             },
-        boxes = {
-                arc=3mm,
+        boxes={
+                arc=20mm,
                 boxsep=20pt,
-                boxrule=6mm,
                 colback=white,
-                colframe=tublue,
-                title style={tublue},
-                fonttitle=\centering\bfseries\Large
+                title style={left color=tublue, right color=tublue!60}, % gradient
+                fonttitle=\bfseries\Large,
+                drop fuzzy shadow=black,
+                left=0.6em,
+                right=0.6em,
             },
     ]
 
     \posterbox[
         halign=center,
         valign=center,
-        % colupper=white,
-        % colback=tublue,
     ]{
         name=title,
         column=1,
