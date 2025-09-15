@@ -11,7 +11,7 @@
 \author{Frank T. Ebel, Martin Braß, Markus Wallerberger, and Karsten Held}
 
 % font, typesetting
-\usepackage[fontsize=34]{fontsize}
+\usepackage[fontsize=32]{fontsize}
 \usepackage{fontspec}
 \usepackage{enumitem}
 \setitemize{itemsep=1pt}
@@ -19,7 +19,7 @@
 \usepackage{microtype}
 \usepackage{pdfrender}
 \usepackage{pifont} %cross
-\renewcommand{\familydefault}{\sfdefault} % sans-serif
+\setmainfont{Noto Sans}
 
 % math and science typesetting
 \usepackage{amsmath}
@@ -27,6 +27,7 @@
 \usepackage{mathtools}
 \usepackage[warnings-off={mathtools-colon,mathtools-overbracket}]{unicode-math} % load after ams
 \unimathsetup{math-style=ISO}
+\setmathfont{Noto Sans Math}
 
 % graphics, colors, captions, tables
 \usepackage{caption}
