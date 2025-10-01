@@ -1,0 +1,35 @@
+name: CI
+on:
+  push:
+    branches:
+      - main
+    tags: ['*']
+  pull_request:
+  workflow_dispatch:
+concurrency:
+  # Skip intermediate builds: always.
+  # Cancel intermediate builds: only if it is a pull request build.
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ startsWith(github.ref, 'refs/pull/') }}
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: install fonts
+        run: |
+          sudo apt-get install fonts-noto
+          # did not find Noto Sans Math inside Ubuntu repos
+          wget https://cdn.jsdelivr.net/gh/notofonts/notofonts.github.io/fonts/NotoSansMath/full/ttf/NotoSansMath-Regular.ttf
+          mkdir -p ~/.local/share/fonts/
+          mv NotoSansMath-Regular.ttf ~/.local/share/fonts/
+          fc-cache --verbose --force
+      - uses: xu-cheng/texlive-action@v2
+        with:
+          scheme: full
+          run: latexmk
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v4
+        with:
+          name: PDF
+          path: .build/main.pdf
